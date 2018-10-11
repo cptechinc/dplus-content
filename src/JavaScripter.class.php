@@ -1,4 +1,6 @@
 <?php
+	namespace Dplus\Content;
+	
 	/**
 	 * Class for generating JavaScript
 	 */

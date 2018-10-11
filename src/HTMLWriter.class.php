@@ -1,10 +1,12 @@
 <?php
+	namespace Dplus\Content;
+
 	/**
 	 * Class that generates HTML
 	 */
 	class HTMLWriter {
-		use AttributeParser;
-		use ThrowErrorTrait;
+		use \Dplus\Base\AttributeParser;
+		use \Dplus\Base\ThrowErrorTrait;
 
 		/**
 		 * Array of HTML elements that need a closing tag

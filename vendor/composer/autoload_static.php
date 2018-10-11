@@ -6,19 +6,36 @@ namespace Composer\Autoload;
 
 class ComposerStaticInita104fe145213714fc6b8863298dad526
 {
-    public static $files = array (
-        'c53a9b14c24b694563c32f4a2d28675b' => __DIR__ . '/../..' . '/src/HTMLWriter.class.php',
-        'f36245efef1c346ca02a1905338bb6d8' => __DIR__ . '/../..' . '/src/HTMLMaker.class.php',
-        'aa379ad6ccdcfad1d4e2e16b532e1ce1' => __DIR__ . '/../..' . '/src/Table.class.php',
-        '844e4b9a6c755a6268a9eee4231dfbc0' => __DIR__ . '/../..' . '/src/FormMaker.class.php',
-        '3197c9ce28500f61544ef7d371ad70aa' => __DIR__ . '/../..' . '/src/Paginator.class.php',
-        '0a6ffebbefbb4d19014ef0f9b55315c2' => __DIR__ . '/../..' . '/src/TablePageSorter.class.php',
-        '26c22bc56aaa7248a15627f87cfa2b84' => __DIR__ . '/../..' . '/src/JavaScripter.class.php',
+    public static $prefixLengthsPsr4 = array (
+        'D' => 
+        array (
+            'Dplus\\Content\\' => 14,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Dplus\\Content\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
+    );
+
+    public static $classMap = array (
+        'Dplus\\Content\\FormMaker' => __DIR__ . '/../..' . '/src/FormMaker.class.php',
+        'Dplus\\Content\\HTMLMaker' => __DIR__ . '/../..' . '/src/HTMLMaker.class.php',
+        'Dplus\\Content\\HTMLWriter' => __DIR__ . '/../..' . '/src/HTMLWriter.class.php',
+        'Dplus\\Content\\JavaScripter' => __DIR__ . '/../..' . '/src/JavaScripter.class.php',
+        'Dplus\\Content\\Paginator' => __DIR__ . '/../..' . '/src/Paginator.class.php',
+        'Dplus\\Content\\Table' => __DIR__ . '/../..' . '/src/Table.class.php',
+        'Dplus\\Content\\TablePageSorter' => __DIR__ . '/../..' . '/src/TablePageSorter.class.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInita104fe145213714fc6b8863298dad526::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInita104fe145213714fc6b8863298dad526::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInita104fe145213714fc6b8863298dad526::$classMap;
 
         }, null, ClassLoader::class);
     }

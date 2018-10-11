@@ -1,9 +1,11 @@
 <?php
+	namespace Dplus\Content;
+
 	/**
 	 * Class for dealing with Pagination for AJAX or non AJAX pages
 	 */
 	class Paginator {
-		use AttributeParser;
+		use \Dplus\Base\AttributeParser;
 
 		/**
 		 * Page Number

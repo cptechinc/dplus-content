@@ -1,4 +1,6 @@
 <?php 
+    namespace Dplus\Content;
+    
     class FormMaker extends HTMLWriter {
         
         private $formstring = '';

@@ -1,11 +1,12 @@
 <?php
+	namespace Dplus\Content;
 
-/**
- * Based off Kyle Gadd's Table class http://www.php-ease.com/classes/table.html
- * 	Modified to suit DPluso
- */
+	/**
+	 * Based off Kyle Gadd's Table class http://www.php-ease.com/classes/table.html
+	 * 	Modified to suit DPluso
+	 */
 	class Table {
-		use AttributeParser;
+		use \Dplus\Base\AttributeParser;
 
 		/**
 		 * After the first row in a table this $var stays true
