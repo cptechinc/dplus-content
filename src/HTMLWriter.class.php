@@ -5,8 +5,8 @@
 	 * Class that generates HTML
 	 */
 	class HTMLWriter {
-		use \Dplus\Base\AttributeParser;
-		use \Dplus\Base\ThrowErrorTrait;
+		use Dplus\Base\AttributeParser;
+		use Dplus\Base\ThrowErrorTrait;
 
 		/**
 		 * Array of HTML elements that need a closing tag
@@ -16,7 +16,7 @@
 			'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'i', 'b', 'strong', 'code', 'pre', 'small',
 			'div', 'nav', 'ol', 'ul', 'li', 'button',
 			'table', 'tr', 'td', 'th', 'thead', 'tbody', 'tfoot',
-			'textarea', 'option', 'label', 'a', 'form', 'script',
+			'textarea', 'select', 'option', 'label', 'a', 'form', 'script',
 			'header', 'footer', 'article'
 		);
 
@@ -69,6 +69,8 @@
 					$attr = isset($args[0]) ? $args[0] : '';
 					$content = isset($args[1]) ? $args[1] : '';
 					return $this->create_element($name, $attr, $content);
+				} else {
+					echo $name;
 				}
 			}
 
@@ -168,6 +170,29 @@
 			 */
 			public function sronly($content = '') {
 				return $this->span("class=sr-only", $content);
+			}
+			
+			/**
+			 * Takes string and gives it a span of highlight to give it a highlighted look on the page
+			 * @param  string $haystack the string to look through
+			 * @param  string $needle   the word to look for
+			 * @return string           html string with the $needle highlighted or returns just the string
+			 */
+			public function highlight($haystack, $needle) {
+				$stringer = new Dplus\Base\StringerBell();
+				
+				if ($this->does_matchphone($haystack)) {
+					$needle = $stringer->does_matchphone($needle);
+				}
+				$regex = "/(".str_replace('-', '\-?', $needle).")/i";
+				$contains = preg_match($regex, $haystack, $matches);
+
+				if ($contains) {
+					$highlight = $this->span('class=highlight', $matches[0]);
+					return preg_replace($regex, $highlight, $haystack);
+				} else {
+					return $haystack;
+				}
 			}
 
 			/**
