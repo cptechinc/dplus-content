@@ -213,7 +213,7 @@
 		*/
 		public static function setup_displayonpage() {
 			if (DplusWire::wire('input')->get->display) {
-				DplusWire::wire('session')->display = \Dplus\ProcessWire\DplusWire::wire('input')->get->text('display');
+				DplusWire::wire('session')->display = DplusWire::wire('input')->get->text('display');
 			} else {
 				if (!DplusWire::wire('session')->display) {
 					DplusWire::wire('session')->display = DplusWire::wire('config')->showonpage;
