@@ -1,12 +1,14 @@
 <?php
 	namespace Dplus\Content;
 
+	use Dplus\Base\StringerBell;
+
 	/**
 	 * Class that generates HTML
 	 */
 	class HTMLWriter {
-		use Dplus\Base\AttributeParser;
-		use Dplus\Base\ThrowErrorTrait;
+		use \Dplus\Base\AttributeParser;
+		use \Dplus\Base\ThrowErrorTrait;
 
 		/**
 		 * Array of HTML elements that need a closing tag
@@ -179,7 +181,7 @@
 			 * @return string           html string with the $needle highlighted or returns just the string
 			 */
 			public function highlight($haystack, $needle) {
-				$stringer = new Dplus\Base\StringerBell();
+				$stringer = new StringerBell();
 				
 				if ($this->does_matchphone($haystack)) {
 					$needle = $stringer->does_matchphone($needle);

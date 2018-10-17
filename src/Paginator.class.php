@@ -1,13 +1,13 @@
 <?php
 	namespace Dplus\Content;
 
-	use Dplus\ProcessWire\DplusWire as DplusWire;
+	use Dplus\ProcessWire\DplusWire;
 
 	/**
 	 * Class for dealing with Pagination for AJAX or non AJAX pages
 	 */
 	class Paginator {
-		use Dplus\Base\AttributeParser;
+		use \Dplus\Base\AttributeParser;
 
 		/**
 		 * Page Number
