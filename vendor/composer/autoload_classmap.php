@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Dplus\\Content\\Bootstrap4Paginator' => $baseDir . '/src/Paginator.class.php',
     'Dplus\\Content\\FormMaker' => $baseDir . '/src/FormMaker.class.php',
     'Dplus\\Content\\HTMLMaker' => $baseDir . '/src/HTMLMaker.class.php',
     'Dplus\\Content\\HTMLWriter' => $baseDir . '/src/HTMLWriter.class.php',
