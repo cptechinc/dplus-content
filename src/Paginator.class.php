@@ -102,19 +102,27 @@
 		 * @return string html of the navigation through pages
 		 */
 		public function __toString() {
+			return generate_pagination();
+		}
+
+		/**
+		 * Creates the HTML for the pagination links
+		 * @return string
+		 */
+		public function generate_pagination() {
 			$bootstrap = new HTMLWriter();
 			$list = '';
 			$totalpages = ceil($this->count / DplusWire::wire('session')->display);
 			$totalpages = $totalpages == 0 ? 1 : $totalpages;
 
 			if ($this->pagenbr == 1) {
-				$link = $bootstrap->create_element('a', 'href=#|aria-label=Previous', '<span aria-hidden="true">&laquo;</span>');
-				$list .= $bootstrap->create_element('li', 'class=disabled', $link);
+				$link = $bootstrap->a('href=#|aria-label=Previous', '<span aria-hidden="true">&laquo;</span>');
+				$list .= $bootstrap->li('class=disabled', $link);
 			} else {
 				$href = $this->paginate($this->pagenbr - 1);
 				$ajaxdetails = (!empty($this->ajaxdata)) ? "class=load-link|".$this->generate_ajaxdataforcontento() : '';
-				$link = $bootstrap->create_element('a', "href=$href|aria-label=Previous|$ajaxdetails", '<span aria-hidden="true">&laquo;</span>');
-				$list .= $bootstrap->create_element('li', '', $link);
+				$link = $bootstrap->a('a', "href=$href|aria-label=Previous|$ajaxdetails", '<span aria-hidden="true">&laquo;</span>');
+				$list .= $bootstrap->li('', $link);
 			}
 
 			for ($i = ($this->pagenbr - 3); $i < ($this->pagenbr + 4); $i++) {
@@ -219,5 +227,56 @@
 					DplusWire::wire('session')->display = DplusWire::wire('config')->showonpage;
 				}
 			}
+		}
+	}
+
+	class Bootstrap4Paginator extends Paginator {
+		/**
+		 * Creates the HTML for the pagination links
+		 * @return string
+		 */
+		public function generate_pagination() {
+			$bootstrap = new HTMLWriter();
+			$list = '';
+			$totalpages = ceil($this->count / DplusWire::wire('session')->display);
+			$totalpages = $totalpages == 0 ? 1 : $totalpages;
+			
+			if ($this->pagenbr == 1) {
+				$link = $bootstrap->create_element('a', 'class=page-link|href=#|aria-label=Previous', '<span aria-hidden="true">&laquo;</span>');
+				$list .= $bootstrap->create_element('li', 'class=page-item disabled', $link);
+			} else {
+				$href = $this->paginate($this->pagenbr - 1);
+				$ajaxdetails = (!empty($this->ajaxdata)) ? "class=page-link load-link|".$this->generate_ajaxdataforcontento() : '';
+				$link = $bootstrap->create_element('a', "href=$href|aria-label=Previous|$ajaxdetails", '<span aria-hidden="true">&laquo;</span>');
+				$list .= $bootstrap->create_element('li', 'class=page-item', $link);
+			}
+
+			for ($i = ($this->pagenbr - 3); $i < ($this->pagenbr + 4); $i++) {
+				if ($i > 0) {
+					if ($this->pagenbr == $i) {
+						$href = $this->paginate($i);
+						$ajaxdetails = (!empty($this->ajaxdata)) ? "class=page-link load-link|".$this->generate_ajaxdataforcontento() : '';
+						$link = $bootstrap->a("href=$href|$ajaxdetails", $i);
+						$list .= $bootstrap->li('class=page-item active', $link);
+					} elseif ($i < ($totalpages + 1)) {
+						$href = $this->paginate($i);
+						$ajaxdetails = (!empty($this->ajaxdata)) ? "class=page-link load-link|".$this->generate_ajaxdataforcontento() : '';
+						$link = $bootstrap->a("href=$href|$ajaxdetails", $i);
+						$list .= $bootstrap->li('class=page-item', $link);
+					}
+				}
+			}
+
+			if ($this->pagenbr == $totalpages) {
+				$link = $bootstrap->a('href=#|class=page-link|aria-label=Next', '<span aria-hidden="true">&raquo;</span>');
+				$list .= $bootstrap->li('class=page-item disabled', $link);
+			} else {
+				$href = $this->paginate($this->pagenbr + 1);
+				$ajaxdetails = (!empty($this->ajaxdata)) ? "class=page-link load-link|".$this->generate_ajaxdataforcontento() : '';
+				$link = $bootstrap->a("href=$href|aria-label=Next|$ajaxdetails", '<span aria-hidden="true">&raquo;</span>');
+				$list .= $bootstrap->li('class=page-item', $link);
+			}
+			$ul = $bootstrap->ul('class=pagination', $list);
+			return $bootstrap->nav('class=text-center', $ul);
 		}
 	}
