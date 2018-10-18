@@ -1,4 +1,6 @@
 <?php
+	namespace Dplus\Content;
+	
 	/**
 	 * Class for dealing with sorting tables by its columns and proving the sorting rules and description
 	 */

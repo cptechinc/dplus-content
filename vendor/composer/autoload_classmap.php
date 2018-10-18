@@ -6,4 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Dplus\\Content\\FormMaker' => $baseDir . '/src/FormMaker.class.php',
+    'Dplus\\Content\\HTMLMaker' => $baseDir . '/src/HTMLMaker.class.php',
+    'Dplus\\Content\\HTMLWriter' => $baseDir . '/src/HTMLWriter.class.php',
+    'Dplus\\Content\\JavaScripter' => $baseDir . '/src/JavaScripter.class.php',
+    'Dplus\\Content\\Paginator' => $baseDir . '/src/Paginator.class.php',
+    'Dplus\\Content\\Table' => $baseDir . '/src/Table.class.php',
+    'Dplus\\Content\\TablePageSorter' => $baseDir . '/src/TablePageSorter.class.php',
 );

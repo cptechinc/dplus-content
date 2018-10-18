@@ -1,4 +1,6 @@
 <?php
+	namespace Dplus\Content;
+	
 	/**
 	 * Class that generates HTML
 	 */
@@ -117,7 +119,7 @@
 			 * Empty the content string
 			 * @return void
 			 */
-			public function empty() {
+			public function _empty() {
 				$this->content = '';
 			}
 

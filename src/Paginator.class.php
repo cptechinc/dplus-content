@@ -1,9 +1,13 @@
 <?php
+	namespace Dplus\Content;
+
+	use Dplus\ProcessWire\DplusWire;
+
 	/**
 	 * Class for dealing with Pagination for AJAX or non AJAX pages
 	 */
 	class Paginator {
-		use AttributeParser;
+		use \Dplus\Base\AttributeParser;
 
 		/**
 		 * Page Number
@@ -19,7 +23,7 @@
 
 		/**
 		 * Page URL
-		 * @var Purl\Url
+		 * @var \Purl\Url
 		 */
 		public $pageurl;
 
@@ -49,7 +53,6 @@
 			$this->pageurl = new \Purl\Url($pageurl);
 			$this->insertafter = $insertafter;
 			$this->ajaxdata = $this->parse_ajaxdata($ajaxdata);
-
 			$this::setup_displayonpage();
 		}
 
@@ -148,7 +151,7 @@
 		============================================================ */
 		/**
 		* Find what page number the $url is on
-		* @param  Purl\Url $url
+		* @param  \Purl\Url $url
 		* @return int     Page Number
 		*/
 		public static function generate_pagenbr(\Purl\Url $url) {
@@ -182,12 +185,12 @@
 
 		/**
 		 * Paginates the Purl\Url object by adding the page number to its path
-		 * @param  Purl\Url $url         URL Object
+		 * @param  \Purl\Url $url         URL Object
 		 * @param  int      $pagenbr     Page Number to page to
 		 * @param  string   $insertafter Path Segment to insert the page number
-		 * @return Purl\Url              Url object with the paginated path
+		 * @return \Purl\Url              Url object with the paginated path
 		 */
-		public static function paginate_purl(Purl\Url $url, $pagenbr, $insertafter) {
+		public static function paginate_purl(\Purl\Url $url, $pagenbr, $insertafter) {
 			$insertafter = trim($insertafter, '/');
 			$path = $url->getPath();
 
@@ -206,7 +209,7 @@
 		}
 
 		/**
-		* Initializes the DplusWire::wire('session')->display value;
+		* Initializes the Dplus\ProcessWire\DplusWire::wire('session')->display value;
 		*/
 		public static function setup_displayonpage() {
 			if (DplusWire::wire('input')->get->display) {

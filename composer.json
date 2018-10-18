@@ -5,14 +5,8 @@
     "keywords": ["form", "HTML", "paginator", "TablePageSorter", "table"],
     "homepage": "http://github.com/cptechinc/dplus-content",
 	"autoload": {
-		"files": [
-			"src/HTMLWriter.class.php",
-			"src/HTMLMaker.class.php",
-            "src/Table.class.php",
-			"src/FormMaker.class.php",
-			"src/Paginator.class.php",
-			"src/TablePageSorter.class.php",
-			"src/JavaScripter.class.php"
-		]
+		"psr-4": {
+			"Dplus\\Content\\": "src/"
+		}
 	}
 }
