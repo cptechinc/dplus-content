@@ -102,7 +102,7 @@
 		 * @return string html of the navigation through pages
 		 */
 		public function __toString() {
-			return generate_pagination();
+			return $this->generate_pagination();
 		}
 
 		/**
@@ -230,7 +230,7 @@
 		}
 	}
 
-	class Bootstrap4Paginator extends Paginator {
+	class PaginatorBootstrap4 extends Paginator {
 		/**
 		 * Creates the HTML for the pagination links
 		 * @return string

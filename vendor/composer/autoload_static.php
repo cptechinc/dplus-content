@@ -21,12 +21,12 @@ class ComposerStaticInita104fe145213714fc6b8863298dad526
     );
 
     public static $classMap = array (
-        'Dplus\\Content\\Bootstrap4Paginator' => __DIR__ . '/../..' . '/src/Paginator.class.php',
         'Dplus\\Content\\FormMaker' => __DIR__ . '/../..' . '/src/FormMaker.class.php',
         'Dplus\\Content\\HTMLMaker' => __DIR__ . '/../..' . '/src/HTMLMaker.class.php',
         'Dplus\\Content\\HTMLWriter' => __DIR__ . '/../..' . '/src/HTMLWriter.class.php',
         'Dplus\\Content\\JavaScripter' => __DIR__ . '/../..' . '/src/JavaScripter.class.php',
         'Dplus\\Content\\Paginator' => __DIR__ . '/../..' . '/src/Paginator.class.php',
+        'Dplus\\Content\\PaginatorBootstrap4' => __DIR__ . '/../..' . '/src/Paginator.class.php',
         'Dplus\\Content\\Table' => __DIR__ . '/../..' . '/src/Table.class.php',
         'Dplus\\Content\\TablePageSorter' => __DIR__ . '/../..' . '/src/TablePageSorter.class.php',
     );
