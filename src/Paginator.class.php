@@ -7,37 +7,39 @@
 	 * Class for dealing with Pagination for AJAX or non AJAX pages
 	 */
 	class Paginator {
+		use \Dplus\Base\ThrowErrorTrait;
+		use \Dplus\Base\MagicMethodTraits;
 		use \Dplus\Base\AttributeParser;
 
 		/**
 		 * Page Number
 		 * @var int
 		 */
-		public $pagenbr;
+		protected $pagenbr;
 
 		/**
 		 * Number of Items to paginate for
 		 * @var int
 		 */
-		public $count;
+		protected $count;
 
 		/**
 		 * Page URL
 		 * @var \Purl\Url
 		 */
-		public $pageurl;
+		protected $pageurl;
 
 		/**
-		 * AJAX DATA
+		 * Ajax Data string data-focus="{focus}" data-loadinto="{loadinto}"
 		 * @var string
 		 */
-		public $ajaxdata;
+		protected $ajaxdata;
 
 		/**
 		 * Where to insert pagination path segment
 		 * @var string
 		 */
-		public $insertafter;
+		protected $insertafter;
 
 		/**
 		 * CONSTRUCTOR
@@ -52,7 +54,7 @@
 			$this->count = $count;
 			$this->pageurl = new \Purl\Url($pageurl);
 			$this->insertafter = $insertafter;
-			$this->ajaxdata = $this->parse_ajaxdata($ajaxdata);
+			$this->ajaxdata = !empty($ajaxdata) ? $this->parse_ajaxdata($ajaxdata) : ''; 
 			$this::setup_displayonpage();
 		}
 
@@ -76,7 +78,7 @@
 			$url = new \Purl\Url($this->pageurl);
 			$url->query->remove('display');
 			$href = $url->getUrl();
-			$ajaxdata = $this->generate_ajaxdataforcontento();
+			$ajaxdata = (!empty($this->ajaxdata)) ? $this->generate_ajaxdataforcontento() : '';
 			$bootstrap = new HTMLWriter();
 
 			$form = $bootstrap->open('div', 'class=form-group');
@@ -93,7 +95,7 @@
 			$form .= $bootstrap->close('select');
 			$form .= $bootstrap->close('div');
 
-			$ajaxload = $this->ajaxdata ? 'ajax-load' : '';
+			$ajaxload = !empty($this->ajaxdata) ? 'ajax-load' : '';
 			return $bootstrap->form("action=$href|method=get|class=form-inline results-per-page-form $ajaxload|$ajaxdata", $form);
 		}
 
