@@ -257,12 +257,12 @@
 				if ($i > 0) {
 					if ($this->pagenbr == $i) {
 						$href = $this->paginate($i);
-						$ajaxdetails = (!empty($this->ajaxdata)) ? "class=page-link load-link|".$this->generate_ajaxdataforcontento() : '';
+						$ajaxdetails = (!empty($this->ajaxdata)) ? "class=page-link load-link|".$this->generate_ajaxdataforcontento() : 'class=page-link';
 						$link = $bootstrap->a("href=$href|$ajaxdetails", $i);
 						$list .= $bootstrap->li('class=page-item active', $link);
 					} elseif ($i < ($totalpages + 1)) {
 						$href = $this->paginate($i);
-						$ajaxdetails = (!empty($this->ajaxdata)) ? "class=page-link load-link|".$this->generate_ajaxdataforcontento() : '';
+						$ajaxdetails = (!empty($this->ajaxdata)) ? "class=page-link load-link|".$this->generate_ajaxdataforcontento() : 'class=page-link';
 						$link = $bootstrap->a("href=$href|$ajaxdetails", $i);
 						$list .= $bootstrap->li('class=page-item', $link);
 					}
