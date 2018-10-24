@@ -123,7 +123,7 @@
 			} else {
 				$href = $this->paginate($this->pagenbr - 1);
 				$ajaxdetails = (!empty($this->ajaxdata)) ? "class=load-link|".$this->generate_ajaxdataforcontento() : '';
-				$link = $bootstrap->a('a', "href=$href|aria-label=Previous|$ajaxdetails", '<span aria-hidden="true">&laquo;</span>');
+				$link = $bootstrap->a("href=$href|aria-label=Previous|$ajaxdetails", '<span aria-hidden="true">&laquo;</span>');
 				$list .= $bootstrap->li('', $link);
 			}
 
@@ -248,7 +248,7 @@
 				$list .= $bootstrap->create_element('li', 'class=page-item disabled', $link);
 			} else {
 				$href = $this->paginate($this->pagenbr - 1);
-				$ajaxdetails = (!empty($this->ajaxdata)) ? "class=page-link load-link|".$this->generate_ajaxdataforcontento() : '';
+				$ajaxdetails = (!empty($this->ajaxdata)) ? "class=page-link load-link|".$this->generate_ajaxdataforcontento() : 'class=page-link';
 				$link = $bootstrap->create_element('a', "href=$href|aria-label=Previous|$ajaxdetails", '<span aria-hidden="true">&laquo;</span>');
 				$list .= $bootstrap->create_element('li', 'class=page-item', $link);
 			}
@@ -274,7 +274,7 @@
 				$list .= $bootstrap->li('class=page-item disabled', $link);
 			} else {
 				$href = $this->paginate($this->pagenbr + 1);
-				$ajaxdetails = (!empty($this->ajaxdata)) ? "class=page-link load-link|".$this->generate_ajaxdataforcontento() : '';
+				$ajaxdetails = (!empty($this->ajaxdata)) ? "class=page-link load-link|".$this->generate_ajaxdataforcontento() : 'class=page-link';
 				$link = $bootstrap->a("href=$href|aria-label=Next|$ajaxdetails", '<span aria-hidden="true">&raquo;</span>');
 				$list .= $bootstrap->li('class=page-item', $link);
 			}
