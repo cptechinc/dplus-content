@@ -2,6 +2,7 @@
 	namespace Dplus\Content;
 
 	use Dplus\Base\StringerBell;
+	use Dplus\Base\Validator;
 
 	/**
 	 * Class that generates HTML
@@ -181,18 +182,14 @@
 			 * @return string           html string with the $needle highlighted or returns just the string
 			 */
 			public function highlight($haystack, $needle) {
-				$stringer = new StringerBell();
-				
-				if ($this->does_matchphone($haystack)) {
-					$needle = $stringer->does_matchphone($needle);
-				}
+				$validator = new Validator();
 				$regex = "/(".str_replace('-', '\-?', $needle).")/i";
 				$contains = preg_match($regex, $haystack, $matches);
-
+				
 				if ($contains) {
 					$highlight = $this->span('class=highlight', $matches[0]);
 					return preg_replace($regex, $highlight, $haystack);
-				} else {
+				}  else {
 					return $haystack;
 				}
 			}
