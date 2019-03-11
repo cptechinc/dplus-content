@@ -54,7 +54,7 @@
 			$this->count = $count;
 			$this->pageurl = new \Purl\Url($pageurl);
 			$this->insertafter = $insertafter;
-			$this->ajaxdata = !empty($ajaxdata) ? $this->parse_ajaxdata($ajaxdata) : ''; 
+			$this->ajaxdata = !empty($ajaxdata) ? $this->parse_ajaxdata($ajaxdata) : '';
 			$this::setup_displayonpage();
 		}
 
@@ -67,7 +67,7 @@
 		 * @return string         url with page number
 		 */
 		public function paginate($pagenbr) {
-			return self::paginate_url($this->pageurl, $pagenbr, $this->insertafter);
+			return self::paginate_purl(new \Purl\Url($this->pageurl), $pagenbr, $this->insertafter);
 		}
 
 		/**
@@ -107,6 +107,11 @@
 			return $this->generate_pagination();
 		}
 
+		public function get_totalpages() {
+			$totalpages = ceil($this->count / DplusWire::wire('session')->display);
+			return $totalpages == 0 ? 1 : $totalpages;
+		}
+
 		/**
 		 * Creates the HTML for the pagination links
 		 * @return string
@@ -114,8 +119,7 @@
 		public function generate_pagination() {
 			$bootstrap = new HTMLWriter();
 			$list = '';
-			$totalpages = ceil($this->count / DplusWire::wire('session')->display);
-			$totalpages = $totalpages == 0 ? 1 : $totalpages;
+			$totalpages = $this->get_totalpages();
 
 			if ($this->pagenbr == 1) {
 				$link = $bootstrap->a('href=#|aria-label=Previous', '<span aria-hidden="true">&laquo;</span>');
@@ -242,7 +246,7 @@
 			$list = '';
 			$totalpages = ceil($this->count / DplusWire::wire('session')->display);
 			$totalpages = $totalpages == 0 ? 1 : $totalpages;
-			
+
 			if ($this->pagenbr == 1) {
 				$link = $bootstrap->create_element('a', 'class=page-link|href=#|aria-label=Previous', '<span aria-hidden="true">&laquo;</span>');
 				$list .= $bootstrap->create_element('li', 'class=page-item disabled', $link);
